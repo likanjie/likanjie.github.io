@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Spring事务失效的具体场景及解决方案 | JavaPool</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="java poll icu">
+    
+    <link rel="preload" href="/assets/css/0.styles.739ffb83.css" as="style"><link rel="preload" href="/assets/js/app.fd3fa73c.js" as="script"><link rel="preload" href="/assets/js/5.36339267.js" as="script"><link rel="preload" href="/assets/js/47.d647dd7e.js" as="script"><link rel="prefetch" href="/assets/js/10.1a826e58.js"><link rel="prefetch" href="/assets/js/11.1ed3a5d2.js"><link rel="prefetch" href="/assets/js/12.7ac78132.js"><link rel="prefetch" href="/assets/js/13.365d72cb.js"><link rel="prefetch" href="/assets/js/14.f3106b56.js"><link rel="prefetch" href="/assets/js/15.8592bc41.js"><link rel="prefetch" href="/assets/js/16.2318a9d2.js"><link rel="prefetch" href="/assets/js/17.275dc24f.js"><link rel="prefetch" href="/assets/js/18.c5b327d1.js"><link rel="prefetch" href="/assets/js/19.c1e6877d.js"><link rel="prefetch" href="/assets/js/2.38283ad2.js"><link rel="prefetch" href="/assets/js/20.1facf476.js"><link rel="prefetch" href="/assets/js/21.a1b3464d.js"><link rel="prefetch" href="/assets/js/22.1e8f665f.js"><link rel="prefetch" href="/assets/js/23.a95d74c0.js"><link rel="prefetch" href="/assets/js/24.3b330961.js"><link rel="prefetch" href="/assets/js/25.27ea7209.js"><link rel="prefetch" href="/assets/js/26.542f9a35.js"><link rel="prefetch" href="/assets/js/27.bd31ecf1.js"><link rel="prefetch" href="/assets/js/28.cfadb701.js"><link rel="prefetch" href="/assets/js/29.f236ca24.js"><link rel="prefetch" href="/assets/js/3.9978628c.js"><link rel="prefetch" href="/assets/js/30.fc95ded4.js"><link rel="prefetch" href="/assets/js/31.a657d392.js"><link rel="prefetch" href="/assets/js/32.188dfcbf.js"><link rel="prefetch" href="/assets/js/33.b89206e5.js"><link rel="prefetch" href="/assets/js/34.3dafb535.js"><link rel="prefetch" href="/assets/js/35.ca9ecf49.js"><link rel="prefetch" href="/assets/js/36.76dbe419.js"><link rel="prefetch" href="/assets/js/37.ac508da7.js"><link rel="prefetch" href="/assets/js/38.c301ef50.js"><link rel="prefetch" href="/assets/js/39.c4fb71a8.js"><link rel="prefetch" href="/assets/js/4.208ded9f.js"><link rel="prefetch" href="/assets/js/40.34713b47.js"><link rel="prefetch" href="/assets/js/41.8761bbce.js"><link rel="prefetch" href="/assets/js/42.028f32ee.js"><link rel="prefetch" href="/assets/js/43.77216790.js"><link rel="prefetch" href="/assets/js/44.261d3c0c.js"><link rel="prefetch" href="/assets/js/45.78c30364.js"><link rel="prefetch" href="/assets/js/46.a5817ca1.js"><link rel="prefetch" href="/assets/js/48.b872d313.js"><link rel="prefetch" href="/assets/js/49.67180e24.js"><link rel="prefetch" href="/assets/js/50.35caf8e4.js"><link rel="prefetch" href="/assets/js/6.826d35db.js"><link rel="prefetch" href="/assets/js/7.2dafa3eb.js"><link rel="prefetch" href="/assets/js/8.da40dd6c.js"><link rel="prefetch" href="/assets/js/9.fb62ab55.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.739ffb83.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">JavaPool</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><a href="/" aria-current="page" class="sidebar-link">首页</a></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>基础</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/basics/反射.html" class="sidebar-link">反射</a></li><li><a href="/basics/注解.html" class="sidebar-link">注解</a></li><li><a href="/basics/枚举.html" class="sidebar-link">枚举</a></li><li><a href="/basics/IO.html" class="sidebar-link">IO</a></li><li><a href="/basics/集合.html" class="sidebar-link">集合</a></li><li><a href="/basics/异常.html" class="sidebar-link">异常</a></li><li><a href="/basics/拦截器.html" class="sidebar-link">拦截器</a></li><li><a href="/basics/过虑器.html" class="sidebar-link">过虑器</a></li><li><a href="/basics/jdk8.html" class="sidebar-link">jdk8</a></li><li><a href="/basics/Java8-Lambda.html" class="sidebar-link">Java8-Lambda</a></li><li><a href="/basics/Java8-Stream.html" class="sidebar-link">Java8-Stream</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>设计模式</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/designpattern/黑马-设计模式.html" class="sidebar-link">黑马-设计模式</a></li><li><a href="/designpattern/UML.html" class="sidebar-link">UML类图</a></li><li><a href="/designpattern/七大原则.html" class="sidebar-link">七大原则</a></li><li><a href="/designpattern/23种设计模式.html" class="sidebar-link">23种设计模式</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>JVM</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/bar/three.html" class="sidebar-link">JVM基础概念</a></li><li><a href="/bar/four.html" class="sidebar-link">JVM实战</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>并发多线程</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/thread/并发编程三大核心问题.html" class="sidebar-link">并发编程三大核心问题</a></li><li><a href="/thread/深入理解线程池.html" class="sidebar-link">深入理解线程池</a></li><li><a href="/thread/线程池.html" class="sidebar-link">线程池</a></li><li><a href="/thread/并发编程-FutureTask.html" class="sidebar-link">并发编程-FutureTask</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>MySQL</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/mysql/索引.html" class="sidebar-link">索引</a></li><li><a href="/mysql/锁.html" class="sidebar-link">锁</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Redis</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/redis/持久化.html" class="sidebar-link">持久化</a></li><li><a href="/redis/分布式锁.html" class="sidebar-link">分布式锁</a></li><li><a href="/redis/Redis官方的高可用解决方案.html" class="sidebar-link">Redis官方的高可用解决方案</a></li><li><a href="/redis/数据库缓存最终一致性的四种方案.html" class="sidebar-link">数据库缓存最终一致性的四种方案</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Spring</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/spring/BeanFactory和FactoryBean的区别.html" class="sidebar-link">BeanFactory和FactoryBean的区别</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Mybatis</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/mybatis/MyBatis的SQL执行流程分析.html" class="sidebar-link">MyBatis的SQL执行流程分析</a></li><li><a href="/mybatis/MyBatisPlus.html" class="sidebar-link">MyBatisPlus</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>SpringBoot</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/springboot/SpringBoot经典学习笔记.html" class="sidebar-link">SpringBoot经典学习笔记</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Netty</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/netty/Netty核心技术及源码剖析.html" class="sidebar-link">Netty核心技术及源码剖析</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>K8S</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/k8s/k8s-黑马.html" class="sidebar-link">k8s-黑马</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Linux</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/linux/Centos6.8安装mysql6.54.html" class="sidebar-link">Centos6.8安装mysql6.54</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>工具集</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/utils/完整的身份证正则表达式.html" class="sidebar-link">完整的身份证正则表达式</a></li><li><a href="/utils/Java自带工具方法.html" class="sidebar-link">Java自带工具方法</a></li></ul></section></li><li><a href="/about.html" class="sidebar-link">关于</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="spring事务失效的具体场景及解决方案"><a href="#spring事务失效的具体场景及解决方案" class="header-anchor">#</a> Spring事务失效的具体场景及解决方案</h1> <p>实际项目开发中，如果涉及到多张表操作时，为了保证业务数据的一致性，大家一般都会采用事务机制；好多小伙伴可能只是简单了解一下，遇到事务失效的情况，便会无从下手，溪源此篇文章给大家整理了一下常见Spring事务失效的场景，希望开发过程尽量避免踩坑，造成时间精力的浪费。
+溪源按照最基本的使用方式以及常见失效场景优先级整理,先简单介绍一下具体失效场景：</p> <p>注解<code>@Transactional</code>配置的方法非public权限修饰；
+注解<code>@Transactional</code>所在类非Spring容器管理的bean；
+注解<code>@Transactional</code>所在类中，注解修饰的方法被类内部方法调用；
+业务代码抛出异常类型非RuntimeException，事务失效；
+业务代码中存在异常时，使用try…catch…语句块捕获，而catch语句块没有throw new RuntimeExecption异常;（最难被排查到问题且容易忽略）
+注解<code>@Transactional</code>中Propagation属性值设置错误即Propagation.NOT_SUPPORTED（一般不会设置此种传播机制）
+mysql关系型数据库，且存储引擎是MyISAM而非InnoDB，则事务会不起作用(基本开发中不会遇到)；
+下面基于以上场景，溪源给小伙伴们详细解释；</p> <h4 id="非public权限修饰"><a href="#非public权限修饰" class="header-anchor">#</a> 非public权限修饰</h4> <p>参考Spring官方文档介绍，摘要、译文如下：</p> <blockquote><p>注意：</p> <p>When using proxies, you should apply the @Transactional annotation only to methods with public visibility. If you do annotate protected, private or package-visible methods with the @Transactional annotation, no error is raised, but the annotated method does not exhibit the configured transactional settings. Consider the use of AspectJ (see below) if you need to annotate non-public methods.</p></blockquote> <p>译文</p> <blockquote><p>注意：</p> <p>使用代理时，您应该只将@Transactional注释应用于具有公共可见性的方法。如果使用@Transactional注释对受保护的、私有的或包可见的方法进行注释，则不会引发错误，但带注释的方法不会显示配置的事务设置。如果需要注释非公共方法，请考虑使用AspectJ（见下文）。</p></blockquote> <p>简言之：<code>@Transactional 只能用于 public 的方法上，否则事务不会失效，如果要用在非 public 方法上，可以开启 AspectJ 代理模式。</code>
+目前，如果@Transactional注解作用在非public方法上，编译器也会给与明显的提示，如图：</p> <h4 id="非spring容器管理的bean"><a href="#非spring容器管理的bean" class="header-anchor">#</a> 非Spring容器管理的bean</h4> <p>基于这种失效场景，有工作经验的大佬基本上是不会存在这种错误的；<code>@Service</code> 注解注释，StudentServiceImpl 类则不会被Spring容器管理，因此即使方法被<code>@Transactional</code>注解修饰，事务也亦然不会生效。
+简单举例如下：</p> <div class="language-java extra-class"><pre class="language-java"><code>  <span class="token comment">/**
+   * @Author:qxy
+   * @Date:2020/4/7 9:46
+   */</span>
+   <span class="token comment">//@Service</span>
+   <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">StudentServiceImpl</span> <span class="token keyword">implements</span> <span class="token class-name">StudentService</span> <span class="token punctuation">{</span>
+
+       <span class="token annotation punctuation">@Autowired</span>
+       <span class="token keyword">private</span> <span class="token class-name">StudentMapper</span> studentMapper<span class="token punctuation">;</span>
+
+       <span class="token annotation punctuation">@Autowired</span>
+       <span class="token keyword">private</span> <span class="token class-name">ClassService</span> classService<span class="token punctuation">;</span>
+
+       <span class="token annotation punctuation">@Override</span>
+       <span class="token annotation punctuation">@Transactional</span><span class="token punctuation">(</span>propagation <span class="token operator">=</span> <span class="token class-name">Propagation</span><span class="token punctuation">.</span>REQUIRED<span class="token punctuation">,</span> rollbackFor <span class="token operator">=</span> <span class="token class-name">Exception</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+       <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insertClassByException</span><span class="token punctuation">(</span><span class="token class-name">StudentDo</span> studentDo<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">CustomException</span> <span class="token punctuation">{</span>
+           studentMapper<span class="token punctuation">.</span><span class="token function">insertStudent</span><span class="token punctuation">(</span>studentDo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+           <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">CustomException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+       <span class="token punctuation">}</span>
+   <span class="token punctuation">}</span>
+</code></pre></div><h4 id="注解修饰的方法被类内部方法调用"><a href="#注解修饰的方法被类内部方法调用" class="header-anchor">#</a> 注解修饰的方法被类内部方法调用</h4> <p>这种失效场景是我们日常开发中最常踩坑的地方；在类A里面有方法a 和方法b， 然后方法b上面用 @Transactional加了方法级别的事务，在方法a里面 调用了方法b， 方法b里面的事务不会生效。
+为什么会失效呢？：<code>其实原因很简单，Spring在扫描Bean的时候会自动为标注了@Transactional注解的类生成一个代理类（proxy）,当有注解的方法被调用的时候，实际上是代理类调用的，代理类在调用之前会开启事务，执行事务的操作，但是同类中的方法互相调用，相当于this.B()，此时的B方法并非是代理类调用，而是直接通过原有的Bean直接调用，所以注解会失效。</code></p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@Service</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ClassServiceImpl</span> <span class="token keyword">implements</span> <span class="token class-name">ClassService</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> <span class="token class-name">ClassMapper</span> classMapper<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insertClass</span><span class="token punctuation">(</span><span class="token class-name">ClassDo</span> classDo<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">CustomException</span> <span class="token punctuation">{</span>
+        <span class="token function">insertClassByException</span><span class="token punctuation">(</span>classDo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token annotation punctuation">@Transactional</span><span class="token punctuation">(</span>propagation <span class="token operator">=</span> <span class="token class-name">Propagation</span><span class="token punctuation">.</span>REQUIRED<span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insertClassByException</span><span class="token punctuation">(</span><span class="token class-name">ClassDo</span> classDo<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">CustomException</span> <span class="token punctuation">{</span>
+        classMapper<span class="token punctuation">.</span><span class="token function">insertClass</span><span class="token punctuation">(</span>classDo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span>
+</code></pre></div><p>测试用例：</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insertInnerExceptionTest</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">CustomException</span> <span class="token punctuation">{</span>
+     classDo<span class="token punctuation">.</span><span class="token function">setClassId</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     classDo<span class="token punctuation">.</span><span class="token function">setClassName</span><span class="token punctuation">(</span><span class="token string">&quot;java_2&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     classDo<span class="token punctuation">.</span><span class="token function">setClassNo</span><span class="token punctuation">(</span><span class="token string">&quot;java_2&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+     classService<span class="token punctuation">.</span><span class="token function">insertClass</span><span class="token punctuation">(</span>classDo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>测试结果：</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token class-name"><span class="token namespace">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span></span>RuntimeException</span>
+	at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>qxy<span class="token punctuation">.</span>common<span class="token punctuation">.</span>service<span class="token punctuation">.</span>impl<span class="token punctuation">.</span></span>ClassServiceImpl</span><span class="token punctuation">.</span><span class="token function">insertClassByException</span><span class="token punctuation">(</span><span class="token class-name">ClassServiceImpl</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">34</span><span class="token punctuation">)</span>
+	at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>qxy<span class="token punctuation">.</span>common<span class="token punctuation">.</span>service<span class="token punctuation">.</span>impl<span class="token punctuation">.</span></span>ClassServiceImpl</span><span class="token punctuation">.</span><span class="token function">insertClass</span><span class="token punctuation">(</span><span class="token class-name">ClassServiceImpl</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">27</span><span class="token punctuation">)</span>
+	at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>qxy<span class="token punctuation">.</span>common<span class="token punctuation">.</span>service<span class="token punctuation">.</span>impl<span class="token punctuation">.</span></span>ClassServiceImpl</span>$$<span class="token class-name">FastClassBySpringCGLIB</span>$$a1c03d8<span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span><span class="token generics"><span class="token punctuation">&lt;</span>generated<span class="token punctuation">&gt;</span></span><span class="token punctuation">)</span> 
+</code></pre></div><p>虽然业务代码报错了，但是数据库中已经<strong>成功插入数据，事务并未生效；</strong></p> <h4 id="解决方案"><a href="#解决方案" class="header-anchor">#</a> 解决方案</h4> <p>类内部使用其代理类调用事务方法：以上方法略作改动</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insertClass</span><span class="token punctuation">(</span><span class="token class-name">ClassDo</span> classDo<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">CustomException</span> <span class="token punctuation">{</span>
+<span class="token comment">//         insertClassByException(classDo);</span>
+        <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">ClassServiceImpl</span><span class="token punctuation">)</span><span class="token class-name">AopContext</span><span class="token punctuation">.</span><span class="token function">currentProxy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">insertClassByException</span><span class="token punctuation">(</span>classDo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+测试用例：
+ <span class="token annotation punctuation">@Test</span>
+ <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insertInnerExceptionTest</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">CustomException</span> <span class="token punctuation">{</span>
+    classDo<span class="token punctuation">.</span><span class="token function">setClassId</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    classDo<span class="token punctuation">.</span><span class="token function">setClassName</span><span class="token punctuation">(</span><span class="token string">&quot;java_3&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    classDo<span class="token punctuation">.</span><span class="token function">setClassNo</span><span class="token punctuation">(</span><span class="token string">&quot;java_3&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    classService<span class="token punctuation">.</span><span class="token function">insertClass</span><span class="token punctuation">(</span>classDo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>业务代码抛出异常，数据库未插入新数据，达到我们的目的，成功解决一个事务失效问题；</p> <p>数据库数据未发生改变；</p> <p>注意：一定要注意启动类上要添加<code>@EnableAspectJAutoProxy(exposeProxy = true)</code>注解，否则启动报错：</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token class-name"><span class="token namespace">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span></span>IllegalStateException</span><span class="token operator">:</span> <span class="token class-name">Cannot</span> find current proxy<span class="token operator">:</span> <span class="token class-name">Set</span> <span class="token string">'exposeProxy'</span> property on <span class="token class-name">Advised</span> <span class="token keyword">to</span> <span class="token string">'true'</span> <span class="token keyword">to</span> <span class="token namespace">make</span> it available<span class="token punctuation">.</span>
+
+at <span class="token class-name"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>aop<span class="token punctuation">.</span>framework<span class="token punctuation">.</span></span>AopContext</span><span class="token punctuation">.</span><span class="token function">currentProxy</span><span class="token punctuation">(</span><span class="token class-name">AopContext</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">69</span><span class="token punctuation">)</span>
+at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>qxy<span class="token punctuation">.</span>common<span class="token punctuation">.</span>service<span class="token punctuation">.</span>impl<span class="token punctuation">.</span></span>ClassServiceImpl</span><span class="token punctuation">.</span><span class="token function">insertClass</span><span class="token punctuation">(</span><span class="token class-name">ClassServiceImpl</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">28</span><span class="token punctuation">)</span>
+</code></pre></div><h4 id="异常类型非runtimeexception"><a href="#异常类型非runtimeexception" class="header-anchor">#</a> 异常类型非RuntimeException</h4> <p>这种事务失效场景也是非常难排查问题的，如果没有深究源码实现，估计要花费一番功夫啦；</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@Service</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ClassServiceImpl</span> <span class="token keyword">implements</span> <span class="token class-name">ClassService</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> <span class="token class-name">ClassMapper</span> classMapper<span class="token punctuation">;</span>
+
+    <span class="token comment">//    @Override</span>
+    <span class="token comment">//    @Transactional(propagation = Propagation.NESTED, rollbackFor = Exception.class)</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insertClass</span><span class="token punctuation">(</span><span class="token class-name">ClassDo</span> classDo<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+    <span class="token comment">//        即使此处使用代理对象调用内部事务方法，数据依然未发生回滚，事务机制亦然失效</span>
+            <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">ClassServiceImpl</span><span class="token punctuation">)</span><span class="token class-name">AopContext</span><span class="token punctuation">.</span><span class="token function">currentProxy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">insertClassByException</span><span class="token punctuation">(</span>classDo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token annotation punctuation">@Transactional</span><span class="token punctuation">(</span>propagation <span class="token operator">=</span> <span class="token class-name">Propagation</span><span class="token punctuation">.</span>REQUIRED<span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insertClassByException</span><span class="token punctuation">(</span><span class="token class-name">ClassDo</span> classDo<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+        classMapper<span class="token punctuation">.</span><span class="token function">insertClass</span><span class="token punctuation">(</span>classDo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//抛出非RuntimeException类型</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Exception</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+    <span class="token comment">//测试用例：</span>
+     <span class="token annotation punctuation">@Test</span>
+     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insertInnerExceptionTest</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+         
+         classDo<span class="token punctuation">.</span><span class="token function">setClassId</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+         classDo<span class="token punctuation">.</span><span class="token function">setClassName</span><span class="token punctuation">(</span><span class="token string">&quot;java_3&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+         classDo<span class="token punctuation">.</span><span class="token function">setClassNo</span><span class="token punctuation">(</span><span class="token string">&quot;java_3&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+         classService<span class="token punctuation">.</span><span class="token function">insertClass</span><span class="token punctuation">(</span>classDo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre></div><p>运行结果：
+业务代码抛出异常，但是数据库发生更新操作；</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token class-name"><span class="token namespace">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span></span>Exception</span>
+	at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>qxy<span class="token punctuation">.</span>common<span class="token punctuation">.</span>service<span class="token punctuation">.</span>impl<span class="token punctuation">.</span></span>ClassServiceImpl</span><span class="token punctuation">.</span><span class="token function">insertClassByException</span><span class="token punctuation">(</span><span class="token class-name">ClassServiceImpl</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">35</span><span class="token punctuation">)</span>
+	at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>qxy<span class="token punctuation">.</span>common<span class="token punctuation">.</span>service<span class="token punctuation">.</span>impl<span class="token punctuation">.</span></span>ClassServiceImpl</span>$$<span class="token class-name">FastClassBySpringCGLIB</span>$$a1c03d8<span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span><span class="token generics"><span class="token punctuation">&lt;</span>generated<span class="token punctuation">&gt;</span></span><span class="token punctuation">)</span>
+	at <span class="token class-name"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cglib<span class="token punctuation">.</span>proxy<span class="token punctuation">.</span></span>MethodProxy</span><span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span><span class="token class-name">MethodProxy</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">204</span><span class="token punctuation">)</span>
+</code></pre></div><p>数据库依然插入数据，不是我们想要的结果啊，赶紧修改吧，产品经理来追啦~</p> <p><img src="https://img-blog.csdnimg.cn/20200804213955647.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h1YW5fbHU=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p> <p>解决方案：
+<code>@Transactional</code>注解修饰的方法，加上rollbackfor属性值，指定回滚异常类型：@Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@Override</span>
+<span class="token annotation punctuation">@Transactional</span><span class="token punctuation">(</span>propagation <span class="token operator">=</span> <span class="token class-name">Propagation</span><span class="token punctuation">.</span>REQUIRED<span class="token punctuation">,</span>rollbackFor <span class="token operator">=</span> <span class="token class-name">Exception</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insertClassByException</span><span class="token punctuation">(</span><span class="token class-name">ClassDo</span> classDo<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+        classMapper<span class="token punctuation">.</span><span class="token function">insertClass</span><span class="token punctuation">(</span>classDo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Exception</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h4 id="捕获异常后-却未抛出异常"><a href="#捕获异常后-却未抛出异常" class="header-anchor">#</a> 捕获异常后，却未抛出异常</h4> <p>在事务方法中使用try-catch，导致异常无法抛出，自然会导致事务失效。</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@Service</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ClassServiceImpl</span> <span class="token keyword">implements</span> <span class="token class-name">ClassService</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> <span class="token class-name">ClassMapper</span> classMapper<span class="token punctuation">;</span>
+
+    <span class="token comment">//    @Override</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insertClass</span><span class="token punctuation">(</span><span class="token class-name">ClassDo</span> classDo<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">ClassServiceImpl</span><span class="token punctuation">)</span><span class="token class-name">AopContext</span><span class="token punctuation">.</span><span class="token function">currentProxy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">insertClassByException</span><span class="token punctuation">(</span>classDo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token annotation punctuation">@Transactional</span><span class="token punctuation">(</span>propagation <span class="token operator">=</span> <span class="token class-name">Propagation</span><span class="token punctuation">.</span>REQUIRED<span class="token punctuation">,</span>rollbackFor <span class="token operator">=</span> <span class="token class-name">Exception</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insertClassByException</span><span class="token punctuation">(</span><span class="token class-name">ClassDo</span> classDo<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        classMapper<span class="token punctuation">.</span><span class="token function">insertClass</span><span class="token punctuation">(</span>classDo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">/</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+ 测试用例：
+ <span class="token annotation punctuation">@Test</span>
+ <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insertInnerExceptionTest</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ 	classDo<span class="token punctuation">.</span><span class="token function">setClassId</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    classDo<span class="token punctuation">.</span><span class="token function">setClassName</span><span class="token punctuation">(</span><span class="token string">&quot;java_4&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    classDo<span class="token punctuation">.</span><span class="token function">setClassNo</span><span class="token punctuation">(</span><span class="token string">&quot;java_4&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    classService<span class="token punctuation">.</span><span class="token function">insertClass</span><span class="token punctuation">(</span>classDo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>执行结果：</p> <p><img src="https://img-blog.csdnimg.cn/20200804215125452.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h1YW5fbHU=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p> <p><img src="https://img-blog.csdnimg.cn/20200804215141183.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3h1YW5fbHU=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p> <p>解决方案：捕获异常并抛出异常</p> <p>@Override
+@Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
+public void insertClassByException(ClassDo classDo) {
+classMapper.insertClass(classDo);
+try {
+int i = 1 / 0;
+} catch (Exception e) {
+e.printStackTrace();
+throw new RuntimeException();
+}
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+事务传播行为设置异常
+此种事务传播行为不是特殊自定义设置，基本上不会使用Propagation.NOT_SUPPORTED，不支持事务
+@Transactional(propagation = Propagation.NOT_SUPPORTED,rollbackFor = Exception.class)
+public void insertClassByException(ClassDo classDo) {
+classMapper.insertClass(classDo);
+try {
+int i = 1 / 0;
+} catch (Exception e) {
+e.printStackTrace();
+throw new RuntimeException();
+}
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+数据库存储引擎不支持事务
+以MySQL关系型数据为例，如果其存储引擎设置为 MyISAM，则事务失效，因为MyISMA 引擎是不支持事务操作的；
+故若要事务生效，则需要设置存储引擎为InnoDB ；目前 MySQL 从5.5.5版本开始默认存储引擎是：InnoDB；</p> <p>总结：
+以上代码大家可以参考溪源另一篇文章《Spring之事务传播行为》,基于此篇文章的源代码基本能够验证以上举例的事务失效场景
+————————————————
+版权声明：本文为CSDN博主「溪~源」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/xuan_lu/article/details/107797505</p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.fd3fa73c.js" defer></script><script src="/assets/js/5.36339267.js" defer></script><script src="/assets/js/47.d647dd7e.js" defer></script>
+  </body>
+</html>
